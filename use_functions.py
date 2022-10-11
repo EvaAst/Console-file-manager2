@@ -1,10 +1,22 @@
+import os
+
+FILE_NAME = 'history_buy.txt'
+
+history_buy = []
+if os.path.exists(FILE_NAME):
+    with open(FILE_NAME, 'r') as f:
+        for order in f:
+            history_buy.append(order.replace('\n', ''))
+
+
 def check(count):
     summa_count = int(input('Введите сумму на сколько пополнить счет '))
     summa_count += count
+    history_buy.append('Пополнение счета: ')
+    history_buy.append(summa_count)
     return summa_count
 
 
-history_buy = []
 
 
 def buy(summa_check=0):
@@ -12,9 +24,10 @@ def buy(summa_check=0):
         print('1. Вода = 50')
         print('2. Кофе = 200')
         print('3. Чай = 100')
-        print('4. выход')
+        print('4. остаток средств на счете')
+        print('5. выход')
 
-        name_buy = input('Введите продукт')
+        name_buy = input('Введите продукт ')
         if name_buy == '1':
             if 50 <= summa_check:
                 summa_check = summa_check - 50
@@ -28,7 +41,7 @@ def buy(summa_check=0):
                 print('Покупка: Кофе, Осталось средств:', summa_check)
                 history_buy.append('Покупка: Кофе - 200 руб.')
             else:
-                print('Недостаточно средств')
+                print('Недостаточно средств. Осталось средств:', summa_check)
         elif name_buy == '3':
             if 100 <= summa_check:
                 summa_check = summa_check - 100
@@ -37,7 +50,13 @@ def buy(summa_check=0):
             else:
                 print('Недостаточно средств')
         elif name_buy == '4':
+            if 0 <= summa_check:
+                print('На счету:', summa_check)
+                history_buy.append('Остаток средств: ')
+                history_buy.append(summa_check)
+        elif name_buy == '5':
             print('Отмена покупки,Осталось средств:', summa_check)
+
             break
         else:
             print('Неверный пункт меню')
@@ -47,20 +66,32 @@ def buy(summa_check=0):
 
 a = buy()
 
+
 while True:
+    print('0. Очистить список покупок')
     print('1. пополнение счета')
     print('2. покупка')
     print('3. история покупок')
     print('4. выход')
 
     choice = input('Выберите пункт меню')
-    if choice == '1':
+    if choice == '0':
+        f = open(FILE_NAME, 'r+')
+        f.truncate()
+    elif choice == '1':
         a = check(0)
     elif choice == '2':
         buy(a)
     elif choice == '3':
+        for order in history_buy:
+            print(order)
         print(history_buy)
+
     elif choice == '4':
+        with open(FILE_NAME, 'w') as f:
+            for order in history_buy:
+                f.write(f'{order}\n')
         break
+
     else:
         print('Неверный пункт меню')
