@@ -17,8 +17,6 @@ def check(count):
     return summa_count
 
 
-
-
 def buy(summa_check=0):
     while summa_check != 0:
         print('1. Вода = 50')
