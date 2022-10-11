@@ -78,6 +78,7 @@ while True:
     if choice == '0':
         f = open(FILE_NAME, 'r+')
         f.truncate()
+
     elif choice == '1':
         a = check(0)
     elif choice == '2':
