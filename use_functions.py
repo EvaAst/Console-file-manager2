@@ -1,3 +1,9 @@
+from colorama import init
+from colorama import Back,  Fore
+
+# use Colorama to make Termcolor work on Windows too
+init()
+
 import os
 
 FILE_NAME = 'history_buy.txt'
@@ -9,7 +15,8 @@ if os.path.exists(FILE_NAME):
             history_buy.append(order.replace('\n', ''))
 
 def check(count):
-    summa_count = int(input('Введите сумму на сколько пополнить счет '))
+    print(Fore.CYAN)
+    summa_count = int(input('Введите сумму на сколько пополнить счет:  '))
     summa_count += count
     history_buy.append('Пополнение счета: ')
     history_buy.append(summa_count)
@@ -17,13 +24,15 @@ def check(count):
 
 def buy(summa_check=0):
     while summa_check != 0:
+        print(Fore.GREEN, 'Меню:')
         print('1. Вода = 50')
         print('2. Кофе = 200')
         print('3. Чай = 100')
         print('4. остаток средств на счете')
         print('5. выход')
 
-        name_buy = input('Введите продукт ')
+        name_buy = input('Выберите пункт меню ')
+        print(Fore.BLUE)
         if name_buy == '1':
             if 50 <= summa_check:
                 summa_check = summa_check - 50
@@ -47,6 +56,7 @@ def buy(summa_check=0):
                 print('Недостаточно средств')
         elif name_buy == '4':
             if 0 <= summa_check:
+                print(Fore.RED)
                 print('На счету:', summa_check)
                 history_buy.append('Остаток средств: ')
                 history_buy.append(summa_check)
@@ -78,6 +88,7 @@ while True:
     elif choice == '2':
         buy(a)
     elif choice == '3':
+        print(Fore.YELLOW)
         for order in history_buy:
             print(order)
         print(history_buy)
