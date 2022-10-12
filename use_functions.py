@@ -8,14 +8,12 @@ if os.path.exists(FILE_NAME):
         for order in f:
             history_buy.append(order.replace('\n', ''))
 
-
 def check(count):
     summa_count = int(input('Введите сумму на сколько пополнить счет '))
     summa_count += count
     history_buy.append('Пополнение счета: ')
     history_buy.append(summa_count)
     return summa_count
-
 
 def buy(summa_check=0):
     while summa_check != 0:
@@ -61,9 +59,7 @@ def buy(summa_check=0):
 
             return
 
-
 a = buy()
-
 
 while True:
     print('0. Очистить список покупок')
