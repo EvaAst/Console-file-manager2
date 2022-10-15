@@ -1,5 +1,5 @@
 from colorama import init
-from colorama import Back,  Fore
+from colorama import Fore
 
 # use Colorama to make Termcolor work on Windows too
 init()
@@ -28,7 +28,7 @@ def buy(summa_check=0):
         print('1. Вода = 50')
         print('2. Кофе = 200')
         print('3. Чай = 100')
-        print('4. остаток средств на счете')
+        print('4. Остаток средств на счете')
         print('5. выход')
 
         name_buy = input('Выберите пункт меню ')
@@ -57,7 +57,7 @@ def buy(summa_check=0):
         elif name_buy == '4':
             if 0 <= summa_check:
                 print(Fore.RED)
-                print('На счету:', summa_check)
+                print('Остаток средств:', summa_check)
                 history_buy.append('Остаток средств: ')
                 history_buy.append(summa_check)
         elif name_buy == '5':
@@ -82,11 +82,14 @@ while True:
     if choice == '0':
         f = open(FILE_NAME, 'r+')
         f.truncate()
+        break
 
     elif choice == '1':
         a = check(0)
+
     elif choice == '2':
         buy(a)
+
     elif choice == '3':
         print(Fore.YELLOW)
         for order in history_buy:
