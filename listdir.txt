@@ -1,0 +1,2 @@
+files:,.gitignore,Console file manager.py,file.name,history_buy.txt,LICENSE,listdir.txt,my_orders.py,orders.txt,use_functions.py,viktorina.py,zapasnoi.py,
+dirs:,.git,.idea,files:,.gitignore,Console file manager.py,file.name,history_buy.txt,LICENSE,listdir.txt,my_orders.py,orders.txt,use_functions.py,viktorina.py,zapasnoi.py,

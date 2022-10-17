@@ -27,14 +27,36 @@ while True:
             shutil.copytree('case1', 'case1_copy')
     elif choice == '4':# список файлов и папок
         print(os.listdir())
-    elif choice == '5':# посмотреть только папки
+
+
+    elif choice == '6':# посмотреть только папки
         list = [f for f in os.listdir() if os.path.isdir(f)]
+        list.insert(0, 'dirs:')
         print(list)
+
+        if os.path.exists('listdir.txt'):
+
+            with open('listdir.txt', 'a') as f:
+                f.write('\n')
+                for order in list:
+                    f.write(order + ',')
+
+        break
+
     # посмотреть только файлы
-    elif choice == '6':
+    elif choice == '5':
         import os.path
         listOfFiles = [f for f in os.listdir() if os.path.isfile(f)]
+        listOfFiles.insert(0, 'files:')
+        #listOfFiles.
         print(listOfFiles)
+        if os.path.exists('listdir.txt'):
+
+            with open('listdir.txt', 'a') as f:
+
+                for order in listOfFiles:
+                    f.write(order + ',')
+        break
     # просмотр информации об операционной системе
     elif choice == '7':
         print(os.name)
@@ -48,6 +70,10 @@ while True:
         import use_functions
         use_functions
     elif choice == '11':
-        break
+
+            f = open('listdir.txt', 'r+')
+            f.truncate()
+            break
+
     else:
         print('Неверный пункт меню')
