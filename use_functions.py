@@ -1,6 +1,7 @@
 from colorama import init
 from colorama import Fore
 
+
 # use Colorama to make Termcolor work on Windows too
 init()
 
@@ -16,12 +17,20 @@ if os.path.exists(FILE_NAME):
 
 def check(count):
     print(Fore.CYAN)
-    summa_count = int(input('Введите сумму на сколько пополнить счет:  '))
-    summa_count += count
-    history_buy.append('Пополнение счета: ')
-    history_buy.append(summa_count)
+    while True:
+        try:
+            summa_count = int(input('Введите сумму на сколько пополнить счет:  '))
+            summa_count += count
+            history_buy.append('Пополнение счета: ')
+            history_buy.append(summa_count)
+            return summa_count
+        except:
+            # Этот блок срабатывает если было исключение
+            print(Fore.RED)
+            print('Вы ввели не число')
+            print('Введите верное число')
 
-    return summa_count
+
 
 def buy(summa_check=0):
     if summa_check == 0:
