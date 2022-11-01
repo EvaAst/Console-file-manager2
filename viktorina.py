@@ -13,16 +13,16 @@ def data_1(data):
                 'тридцатое', 'тридцать первое']
     month_list = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
                   'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
-    day=int(data[:2])
-    month=int(data[3:5])
-    year=data[6:]
+    day = int(data[:2])
+    month = int(data[3:5])
+    year = data[6:]
 
     return (day_list[day - 1] + ' ' +
      month_list[month - 1] + ' ' +
      year + ' года')
 
 
-dict_datas={
+dict_datas = {
     'Пушкин': '06.06.1799',
     'Гоголь': '01.04.1809',
     'Глинка': '01.06.1804',
@@ -42,20 +42,20 @@ while True:
 
     print(result)
 
-    count_right=0
-    count_wrang=0
+    count_right = 0
+    count_wrang = 0
 
     for i in range(len(result)):
-        a=input(f'Введите дату рождения писателя {result[i]}: ')
-        if a==dict_datas[result[i]]:
+        a = input(f'Введите дату рождения писателя {result[i]}: ')
+        if a == dict_datas[result[i]]:
             print('Правильно!')
-            count_right+=1
+            count_right += 1
         else:
-            data_new=data_1(dict_datas[result[i]])
+            data_new = data_1(dict_datas[result[i]])
             print(f'Неправильно. Правильный ответ: {data_new}')
-            count_wrang+=1
+            count_wrang += 1
     print(f'Количество правильных ответов: {count_right}, Количество неправильных ответов: {count_wrang}')
 
-    answer=input('Если хотите начать сначала введите "+", если нет, то "-"')
-    if answer=='-':
+    answer = input('Если хотите начать сначала введите "+", если нет, то "-"')
+    if answer == '-':
         break

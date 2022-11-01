@@ -1,6 +1,31 @@
 import os, shutil
+from colorama import init
+from colorama import Fore
+
+# use Colorama to make Termcolor work on Windows too
+
+
+def color(f):
+    init()
+
+    def inner(*args, **kwargs):
+        print(Fore.CYAN)
+        # поведение до вызова
+        print('*' * 10)
+        result = f(*args, **kwargs)
+        # поведение после вызова
+        print('*' * 10)
+        return result
+
+    return inner
+
+@color
+def name():
+    ae = 'Астапцова Евгения'
+    print(ae)
 
 while True:
+    print(Fore.YELLOW)
     print('1. создать папку')
     print('2. удалить (файл/папку)')
     print('3. копировать (файл/папку)')
@@ -13,7 +38,12 @@ while True:
     print('10. мой банковский счет')
     print('11. выход')
 
-    choice = input('Выберите пункт меню ')
+    try:
+        choice = input('Выберите пункт меню ')
+    except Exception as e:
+        print('Вы ввели не число')
+        print('Введите верное число')
+        print(e)
 
     if choice == '1': # создать папку передаем путь
         for i in range(10):
@@ -62,7 +92,7 @@ while True:
         print(os.name)
     # 8. создатель программы
     elif choice == '8':
-        print('Астапцова Евгения')
+        ae = name()
     elif choice == '9':
         import viktorina
         viktorina
